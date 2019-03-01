@@ -12,5 +12,9 @@ exclude = '''
   | buck-out
   | build
   | dist
+  | migrations
+  | __pycache__
+  | manage.py
+  | settings.py
 )/
 '''
