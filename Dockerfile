@@ -11,6 +11,8 @@ RUN pip install -r /requirements.txt
 RUN mkdir /app
 WORKDIR /app
 COPY ./app/ /app
+COPY ./pyproject.toml /app/pyproject.toml
+COPY ./.flake8 /.flake8
 
 RUN adduser -D user
 USER user
