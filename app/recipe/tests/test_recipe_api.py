@@ -233,6 +233,7 @@ class RecipeImageUploadTests(TestCase):
         tag1 = sample_tag(user=self.user, name="Vegan")
         tag2 = sample_tag(user=self.user, name="Vegetarian")
         recipe1.tags.add(tag1)
+        recipe1.tags.add(tag2)
         recipe2.tags.add(tag2)
         recipe3 = sample_recipe(user=self.user, title="Fish and chips")
 
@@ -244,6 +245,7 @@ class RecipeImageUploadTests(TestCase):
         serializer2 = RecipeSerializer(recipe2)
         serializer3 = RecipeSerializer(recipe3)
 
+        self.assertEqual(len(res.data), 2)
         self.assertIn(serializer1.data, res.data)
         self.assertIn(serializer2.data, res.data)
         self.assertNotIn(serializer3.data, res.data)
@@ -255,6 +257,7 @@ class RecipeImageUploadTests(TestCase):
         ingredient1 = sample_ingredient(user=self.user, name="Feta cheese")
         ingredient2 = sample_ingredient(user=self.user, name="Chicken")
         recipe1.ingredients.add(ingredient1)
+        recipe1.ingredients.add(ingredient2)
         recipe2.ingredients.add(ingredient2)
         recipe3 = sample_recipe(user=self.user, title="Steak and mushrooms")
 
@@ -265,6 +268,7 @@ class RecipeImageUploadTests(TestCase):
         serializer2 = RecipeSerializer(recipe2)
         serializer3 = RecipeSerializer(recipe3)
 
+        self.assertEqual(len(res.data), 2)
         self.assertIn(serializer1.data, res.data)
         self.assertIn(serializer2.data, res.data)
         self.assertNotIn(serializer3.data, res.data)
